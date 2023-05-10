@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepali Word Converter</title>
+</head>
+<style>
+    .main{
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .form-div{
+        width: 25%;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+    form input, form textarea, form button{
+        margin:10px;
+        padding: 10px;
+    }
+</style>
+<body>
+    <div class="main">
+        <div class="form-div">
+            <form onsubmit="return false" method="post">
+                <input type="decimal" placeholder="enter number" id="number" maxlength="13"/>
+                <textarea id="nepali_word" placeholder="nepali convert text"></textarea>
+                <textarea id="english_word" placeholder="english convert text"></textarea>
+                <button onclick="return convert_numbre_to_words()">Convert Number to Word</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script type="text/javascript" src="nepali_num_converter.min.js"></script>
+<script>
+    function convert_numbre_to_words(){ 
+       
+	if(!document.getElementById('number').value) return;
+    var nepali_word = translate_nepali_num_into_words(document.getElementById('number').value);
+    var english_word = get_nepali_currency(document.getElementById('number').value);
+    document.getElementById('nepali_word').value = nepali_word.trim();
+    document.getElementById('english_word').value = english_word.trim();
+    return false;
+  }
+</script>
+</html>
